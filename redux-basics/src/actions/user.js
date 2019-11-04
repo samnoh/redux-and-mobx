@@ -2,9 +2,9 @@ export const USER_LOGIN = 'USER_LOGIN';
 export const USER_LOGOUT = 'USER_LOGOUT';
 export const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE';
 
-export const login = payload => ({
+export const login = username => ({
     type: USER_LOGIN,
-    payload
+    payload: username
 });
 
 export const logout = () => ({
