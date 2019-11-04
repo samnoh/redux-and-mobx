@@ -1,0 +1,16 @@
+import { createStore } from 'redux';
+
+import rootReducer from 'reducers';
+import { login, logout, changeLanguage } from 'actions/user';
+
+const store = createStore(rootReducer);
+
+store.subscribe(() => {
+    console.log(store.getState());
+});
+
+store.dispatch(login('user1')); // { user: { username: 'user1', language: 'english' } }
+
+store.dispatch(changeLanguage('korean')); // { user: { username: 'user1', language: 'korean' } }
+
+store.dispatch(logout()); // { user: { username: null, language: 'korean' } }

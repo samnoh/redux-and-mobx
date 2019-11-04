@@ -1,12 +1,41 @@
 {
-  "name": "redux-basics",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "Sam Noh <samnoh.dev@gmail.com>",
-  "license": "MIT"
+    "name": "redux-basics",
+    "version": "1.0.0",
+    "description": "",
+    "main": "build/index.js",
+    "scripts": {
+        "start": "npm run build && node build/index.js",
+        "dev": "babel-node src/index.js",
+        "prebuild": "rimraf dist build",
+        "build": "babel src --out-dir build "
+    },
+    "keywords": [],
+    "author": "Sam Noh <samnoh.dev@gmail.com>",
+    "license": "MIT",
+    "dependencies": {
+        "redux": "4.0.4"
+    },
+    "devDependencies": {
+        "@babel/cli": "7.6.4",
+        "@babel/core": "7.6.4",
+        "@babel/node": "7.6.3",
+        "@babel/preset-env": "7.6.3",
+        "babel-plugin-module-resolver": "3.2.0",
+        "rimraf": "3.0.0"
+    },
+    "babel": {
+        "presets": [
+            "@babel/preset-env"
+        ],
+        "plugins": [
+            [
+                "module-resolver",
+                {
+                    "root": [
+                        "./src"
+                    ]
+                }
+            ]
+        ]
+    }
 }

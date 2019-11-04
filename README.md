@@ -1,5 +1,5 @@
-# Redux and MobX Basics
+# Redux vs MobX
 
-##
+## Redux
 
-##
+## MobX
