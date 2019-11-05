@@ -1,9 +1,16 @@
-import { createStore } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 
 import rootReducer from 'reducers';
 import { login, logout, changeLanguage } from 'actions/user';
 
-const store = createStore(rootReducer);
+const middleware = store => next => action => {
+    console.log('action: ', action);
+    next(action);
+};
+
+const enhancer = compose(applyMiddleware(middleware));
+
+const store = createStore(rootReducer, enhancer);
 
 store.subscribe(() => {
     console.log(store.getState());
