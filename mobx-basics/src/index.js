@@ -1,4 +1,4 @@
-import { observable, autorun, reaction, action, runInAction } from 'mobx';
+import { observable, autorun, reaction, computed, action, runInAction } from 'mobx';
 
 const userState = observable({
     name: 'John',
@@ -29,6 +29,31 @@ runInAction(() => {
 });
 
 console.log('Current state: ', userState, postState);
+
+// computed
+const calculator = observable({
+    a: 1,
+    b: 2
+});
+
+const sum = computed(() => {
+    console.log('Calculating...');
+    return calculator.a + calculator.b;
+});
+
+sum.observe(() => calculator.a);
+sum.observe(() => calculator.b);
+
+calculator.a = 10;
+calculator.b = 20;
+
+console.log(sum.value);
+console.log(sum.value);
+console.log(sum.value);
+console.log(sum.value);
+
+calculator.a = 20;
+console.log(sum.value);
 
 // class UserStore {
 //     @observable name = 'John';
