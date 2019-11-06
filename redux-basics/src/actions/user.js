@@ -1,10 +1,26 @@
-export const USER_LOGIN = 'USER_LOGIN';
-export const USER_LOGOUT = 'USER_LOGOUT';
-export const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE';
+import { api } from 'utils/api';
 
-export const login = username => ({
+export const USER_LOGIN = 'user/LOGIN';
+export const USER_LOGOUT = 'user/USERLOGOUT';
+export const USER_CHANGE_LANGUAGE = 'user/CHANGE_LANGUAGE';
+export const GET_USER_FRIENDS = 'user/GET_FRIENDS';
+
+export const login = (username, id) => (dispatch, getState) => {
+    try {
+        setTimeout(() => {
+            dispatch(loginAction(username, id));
+        }, 1000);
+    } catch (e) {
+        console.error(e);
+    }
+};
+
+const loginAction = (username, id) => ({
     type: USER_LOGIN,
-    payload: username
+    payload: {
+        username,
+        id
+    }
 });
 
 export const logout = () => ({
@@ -12,6 +28,22 @@ export const logout = () => ({
 });
 
 export const changeLanguage = language => ({
-    type: CHANGE_LANGUAGE,
+    type: USER_CHANGE_LANGUAGE,
     payload: language
+});
+
+export const getUserFriends = () => async (dispatch, getState) => {
+    try {
+        // dispatch(success)
+        const req = await api.get('/users');
+        dispatch(getUserFriendsAction(req.data.slice(0, 1)));
+    } catch (e) {
+        console.error(e);
+        // dispatch(failure)
+    }
+};
+
+const getUserFriendsAction = friends => ({
+    type: GET_USER_FRIENDS,
+    payload: friends
 });

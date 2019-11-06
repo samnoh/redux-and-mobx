@@ -13,6 +13,7 @@
     "author": "Sam Noh <samnoh.dev@gmail.com>",
     "license": "MIT",
     "dependencies": {
+        "axios": "0.19.0",
         "redux": "4.0.4"
     },
     "devDependencies": {
