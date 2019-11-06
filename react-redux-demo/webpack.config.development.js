@@ -31,7 +31,15 @@ module.exports = {
                             }
                         ]
                     ],
-                    plugins: ['react-hot-loader/babel']
+                    plugins: [
+                        'react-hot-loader/babel',
+                        [
+                            'module-resolver',
+                            {
+                                root: ['./src']
+                            }
+                        ]
+                    ]
                 },
                 exclude: path.join(__dirname, 'node_modules')
             }
@@ -50,8 +58,6 @@ module.exports = {
         port,
         open: true,
         hot: true,
-        stats: {
-            modules: false
-        }
+        stats: 'none'
     }
 };

@@ -29,6 +29,14 @@ module.exports = {
                                 development: process.env.BABEL_ENV === 'development'
                             }
                         ]
+                    ],
+                    plugins: [
+                        [
+                            'module-resolver',
+                            {
+                                root: ['./src']
+                            }
+                        ]
                     ]
                 },
                 exclude: path.join(__dirname, 'node_modules')
