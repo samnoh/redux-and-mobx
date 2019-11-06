@@ -36,7 +36,7 @@ export const getUserFriends = () => async (dispatch, getState) => {
     try {
         // dispatch(success)
         const req = await api.get('/users');
-        dispatch(getUserFriendsAction(req.data.slice(0, 1)));
+        dispatch(getUserFriendsAction(req.data));
     } catch (e) {
         console.error(e);
         // dispatch(failure)
