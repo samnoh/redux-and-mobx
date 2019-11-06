@@ -1,1 +1,1 @@
-# Redux vs MobX
+# Redux and MobX
