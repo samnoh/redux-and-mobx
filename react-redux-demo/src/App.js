@@ -17,10 +17,12 @@ const App = () => {
 
     return (
         <>
+            <ul>
+                {user.friends.map(f => (
+                    <li>{f.name}</li>
+                ))}
+            </ul>
             <div>{user.username}</div>
-            {user.friends.map(f => (
-                <li>{f.name}</li>
-            ))}
             <button onClick={onClick}>Log in</button>
         </>
     );
