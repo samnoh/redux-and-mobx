@@ -3,9 +3,9 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import rootReducer from 'reducers';
 import { login, logout, changeLanguage } from 'actions/user';
 
-const middleware = store => next => action => {
+const middleware = store => dispatch => action => {
     console.log('action: ', action);
-    next(action);
+    dispatch(action);
 };
 
 const enhancer = compose(applyMiddleware(middleware));
