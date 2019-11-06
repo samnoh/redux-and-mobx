@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { login, logout, getUserFriends } from 'actions/user';
+import { login, logout, getUserFriends, removeUserFriend } from 'actions/user';
 
 const App = () => {
     const user = useSelector(state => state.user);
@@ -13,22 +13,23 @@ const App = () => {
     }, []);
 
     const onClick = useCallback(() => {
-        if (username) {
-            return dispatch(logout());
-        }
-        return dispatch(login('user A', 1));
+        username ? dispatch(logout()) : dispatch(login('user A', 1));
     }, [username]);
+
+    const removeHandler = useCallback(e => {
+        dispatch(removeUserFriend(e.target.id));
+    }, []);
 
     return (
         <>
             <ul>
                 {user.friends.map(f => (
-                    <li>
+                    <li onClick={removeHandler} key={f.id} id={f.id}>
                         {f.name} {f.email}
                     </li>
                 ))}
             </ul>
-            {username ? <div>Your username: {username}</div> : <div>Please Login</div>}
+            {username ? <div>Your username: {username}</div> : <div>Please Log in</div>}
             <button onClick={onClick}>{username ? 'Log out' : 'Log in'}</button>
         </>
     );
