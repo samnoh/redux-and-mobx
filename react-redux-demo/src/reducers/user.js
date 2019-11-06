@@ -3,7 +3,8 @@ import { USER_LOGIN, USER_LOGOUT, USER_CHANGE_LANGUAGE, GET_USER_FRIENDS } from 
 const initialState = {
     username: null,
     language: 'english',
-    friends: []
+    friends: [],
+    id: null
 };
 
 const userReducer = (state = initialState, action) => {
@@ -12,7 +13,7 @@ const userReducer = (state = initialState, action) => {
             const { username, id } = action.payload;
             return { ...state, username, id };
         case USER_LOGOUT:
-            return { ...state, username: null };
+            return { ...state, username: null, id: null };
         case USER_CHANGE_LANGUAGE:
             return { ...state, language: action.payload };
         case GET_USER_FRIENDS:
