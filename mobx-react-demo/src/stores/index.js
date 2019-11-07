@@ -1,1 +1,7 @@
-export { default as userStore } from './user';
+import userStore from './user';
+
+const store = {
+    userStore
+};
+
+export default store;
