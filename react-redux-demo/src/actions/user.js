@@ -36,8 +36,8 @@ export const changeLanguage = language => ({
 export const getUserFriends = () => async (dispatch, getState) => {
     try {
         // dispatch(success)
-        const req = await api.get('/users');
-        dispatch(getUserFriendsAction(req.data));
+        const res = await api.get('/users');
+        dispatch(getUserFriendsAction(res.data));
     } catch (e) {
         console.error(e);
         // dispatch(failure)
