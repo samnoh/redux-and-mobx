@@ -1,7 +1,1 @@
-import userStore from './user';
-
-const useStore = () => ({
-    userStore
-});
-
-export default useStore;
+export { default as userStore } from './user';

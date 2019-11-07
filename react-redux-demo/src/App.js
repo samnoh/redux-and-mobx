@@ -12,11 +12,11 @@ const App = () => {
         dispatch(getUserFriends());
     }, []);
 
-    const onClick = useCallback(() => {
+    const onAuth = useCallback(() => {
         username ? dispatch(logout()) : dispatch(login('user A', 1));
     }, [username]);
 
-    const removeHandler = useCallback(e => {
+    const onRemove = useCallback(e => {
         dispatch(removeUserFriend(e.target.id));
     }, []);
 
@@ -24,13 +24,13 @@ const App = () => {
         <>
             <ul>
                 {user.friends.map(f => (
-                    <li onClick={removeHandler} key={f.id} id={f.id}>
+                    <li onClick={onRemove} key={f.id} id={f.id}>
                         {f.name} {f.email}
                     </li>
                 ))}
             </ul>
             {username ? <div>Your username: {username}</div> : <div>Please Log in</div>}
-            <button onClick={onClick}>{username ? 'Log out' : 'Log in'}</button>
+            <button onClick={onAuth}>{username ? 'Log out' : 'Log in'}</button>
         </>
     );
 };

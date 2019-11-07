@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import { useObserver, useLocalStore } from 'mobx-react';
 
-import useStore from 'stores';
+import useStore from 'hooks/useStore';
 
 const App = () => {
     const { userStore } = useStore();
@@ -14,6 +14,9 @@ const App = () => {
         onSubmit(e) {
             e.preventDefault();
             userStore.login(this.value, 1);
+            this.resetValue();
+        },
+        resetValue() {
             this.value = '';
         }
     }));
@@ -22,11 +25,11 @@ const App = () => {
         userStore.getUserFriends();
     }, []);
 
-    const onClick = useCallback(() => {
+    const onAuth = useCallback(() => {
         userStore.username ? userStore.logout() : userStore.login(state.value, 1);
     }, []);
 
-    const removeHandler = useCallback(e => {
+    const onRemove = useCallback(e => {
         userStore.removeUserFriend(e.target.id);
     }, []);
 
@@ -34,7 +37,7 @@ const App = () => {
         <>
             <ul>
                 {userStore.friends.map(f => (
-                    <li onClick={removeHandler} key={f.id} id={f.id}>
+                    <li onClick={onRemove} key={f.id} id={f.id}>
                         {f.name} {f.email}
                     </li>
                 ))}
@@ -51,7 +54,7 @@ const App = () => {
                     />
                 </form>
             )}
-            <button onClick={onClick}>{userStore.username ? 'Log out' : 'Log in'}</button>
+            <button onClick={onAuth}>{userStore.username ? 'Log out' : 'Log in'}</button>
         </>
     ));
 };
