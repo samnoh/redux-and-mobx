@@ -3,20 +3,18 @@ import { observable } from 'mobx';
 import { api } from 'utils/api';
 
 const userStore = observable({
-    id: null,
     username: null,
     language: 'english',
     friends: [],
-    login(username, id) {
+    login(username) {
         setTimeout(() => {
             this.username = username;
-            this.id = id;
-            console.log(this.id);
+            this.getUserFriends();
         }, 500);
     },
     logout() {
         this.username = null;
-        this.id = null;
+        this.friends = [];
     },
     async getUserFriends() {
         try {
