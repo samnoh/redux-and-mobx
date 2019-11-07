@@ -8,10 +8,10 @@ import {
 } from 'actions/user';
 
 const initialState = {
+    id: null,
     username: null,
     language: 'english',
-    friends: [],
-    id: null
+    friends: []
 };
 
 const userReducer = (state = initialState, action) =>
