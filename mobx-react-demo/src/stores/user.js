@@ -1,8 +1,8 @@
-import { observable, action } from 'mobx';
+import { observable } from 'mobx';
 
 import { api } from 'utils/api';
 
-export const userStore = observable({
+const userStore = observable({
     id: null,
     username: null,
     language: 'english',
@@ -11,7 +11,8 @@ export const userStore = observable({
         setTimeout(() => {
             this.username = username;
             this.id = id;
-        }, 1000);
+            console.log(this.id);
+        }, 500);
     },
     logout() {
         this.username = null;
@@ -29,3 +30,5 @@ export const userStore = observable({
         this.friends.splice(this.friends.findIndex(f => f.id === parseInt(id, 10)), 1);
     }
 });
+
+export default userStore;

@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import { useObserver, useLocalStore } from 'mobx-react';
 
-import useStore from 'store';
+import useStore from 'stores';
 
 const App = () => {
     const { userStore } = useStore();
@@ -13,8 +13,8 @@ const App = () => {
         },
         onSubmit(e) {
             e.preventDefault();
-            this.value = '';
             userStore.login(this.value, 1);
+            this.value = '';
         }
     }));
 
