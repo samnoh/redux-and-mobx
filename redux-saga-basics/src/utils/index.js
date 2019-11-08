@@ -1,2 +1,2 @@
 export { default as api } from './api';
-export { default as logerMiddleware } from './reduxLogger';
+export { default as loggerMiddleware } from './reduxLogger';

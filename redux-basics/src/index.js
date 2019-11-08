@@ -3,7 +3,7 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import rootReducer from 'reducers';
 import { login, logout, changeLanguage, getUserFriends } from 'actions/user';
 
-const logerMiddleware = store => next => action => {
+const loggerMiddleware = store => next => action => {
     console.log('Action: ', action.type);
     next(action);
 };
@@ -15,7 +15,7 @@ const thunkMiddleware = ({ dispatch, getState }) => next => action => {
     return next(action);
 };
 
-const enhancer = compose(applyMiddleware(thunkMiddleware, logerMiddleware));
+const enhancer = compose(applyMiddleware(thunkMiddleware, loggerMiddleware));
 
 const store = createStore(rootReducer, enhancer);
 
