@@ -1,6 +1,7 @@
-import { delay, put, takeLatest, select, throttle } from 'redux-saga/effects';
+import { delay, put, takeLatest, call, throttle } from 'redux-saga/effects';
+import { startLoading, finishLoading } from 'actions/loading';
 
-import { api, createRequestSaga } from 'utils';
+import { api } from 'utils';
 
 export const USER_LOGIN = 'user/LOGIN';
 export const USER_LOGIN_ASYNC = 'user/LOGIN_ASYNC';
@@ -17,7 +18,7 @@ export const login = username => ({
 
 function* loginSaga(action) {
     yield delay(1000);
-    yield put(login(action.payload));
+    yield put(login(action.payload)); // login(username)
     yield delay(1000);
     yield put(changeLanguage('korean'));
     yield delay(1000);
@@ -43,9 +44,26 @@ export const getUserFriends = friends => ({
     payload: friends
 });
 
-const getUserFriendsSaga = createRequestSaga(GET_FRIENDS, api);
+function* getUserFriendsSaga(action) {
+    yield put(startLoading(GET_FRIENDS));
+    try {
+        const res = yield call(api, action.payload);
+
+        yield put({
+            type: GET_FRIENDS_SUCCESS,
+            payload: res.data
+        });
+    } catch (e) {
+        yield put({
+            type: GET_FRIENDS_FAILURE,
+            payload: e,
+            error: true
+        });
+    }
+    yield put(finishLoading(GET_FRIENDS));
+}
 
 export function* userSaga() {
-    yield takeLatest(USER_LOGIN_ASYNC, loginSaga);
+    yield throttle(3000, USER_LOGIN_ASYNC, loginSaga);
     yield takeLatest(GET_FRIENDS, getUserFriendsSaga);
 }
