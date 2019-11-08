@@ -6,7 +6,7 @@
     "scripts": {
         "start": "npm run build && node build/index.js",
         "dev": "babel-node src/index.js",
-        "prebuild": "rimraf dist build",
+        "prebuild": "rimraf build",
         "build": "babel src --out-dir build "
     },
     "keywords": [],

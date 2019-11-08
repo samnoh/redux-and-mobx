@@ -1,7 +1,7 @@
 import { api } from 'utils/api';
 
 export const USER_LOGIN = 'user/LOGIN';
-export const USER_LOGOUT = 'user/USERLOGOUT';
+export const USER_LOGOUT = 'user/LOGOUT';
 export const USER_CHANGE_LANGUAGE = 'user/CHANGE_LANGUAGE';
 export const GET_USER_FRIENDS = 'user/GET_FRIENDS';
 
