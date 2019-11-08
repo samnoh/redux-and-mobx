@@ -2,8 +2,10 @@ import React, { createContext } from 'react';
 
 import store from 'stores';
 
-export const Context = createContext();
+const StoreContext = createContext();
 
-export const Provider = ({ children }) => {
-    return <Context.Provider value={{ ...store }}>{children}</Context.Provider>;
+export const StoreProvider = ({ children }) => {
+    return <StoreContext.Provider value={{ ...store }}>{children}</StoreContext.Provider>;
 };
+
+export default StoreContext;

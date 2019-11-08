@@ -13,6 +13,7 @@ const Auth = () => {
         },
         onSubmit(e) {
             e.preventDefault();
+            if (this.value === '') return;
             userStore.login(this.value);
             this.resetValue();
         },
