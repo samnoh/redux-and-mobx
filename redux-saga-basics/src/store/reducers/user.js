@@ -4,7 +4,7 @@ import {
     USER_CHANGE_LANGUAGE,
     GET_FRIENDS_SUCCESS,
     GET_FRIENDS_FAILURE
-} from 'actions/user';
+} from 'store/types/user';
 
 const initialState = {
     username: null,
@@ -12,18 +12,18 @@ const initialState = {
     friends: []
 };
 
-const userReducer = (state = initialState, action) => {
-    switch (action.type) {
+const userReducer = (state = initialState, { type, payload, error }) => {
+    switch (type) {
         case USER_LOGIN:
-            return { ...state, username: action.payload };
+            return { ...state, username: payload };
         case USER_LOGOUT:
             return { ...state, username: null };
         case USER_CHANGE_LANGUAGE:
-            return { ...state, language: action.payload };
+            return { ...state, language: payload };
         case GET_FRIENDS_SUCCESS:
-            return { ...state, friends: action.payload };
+            return { ...state, friends: payload };
         case GET_FRIENDS_FAILURE:
-            return { ...state, error: action.error };
+            return { ...state, error: error };
         default:
             return state;
     }

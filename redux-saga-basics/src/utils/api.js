@@ -1,5 +1,5 @@
 import axios from 'axios';
 
-const api = () => axios.get('https://jsonplaceholder.typicode.com/users');
+const api = id => axios.get(`https://jsonplaceholder.typicode.com/users/${id}`);
 
 export default api;

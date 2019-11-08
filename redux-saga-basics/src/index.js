@@ -1,9 +1,5 @@
 import store from './store';
-import { loginAsync, getUserFriends } from 'actions/user';
+import { loginAsync, getUserFriends } from 'store/actions/user';
 
-store.subscribe(() => {
-    console.log(store.getState());
-});
-
-store.dispatch(loginAsync('user1'));
-// store.dispatch(getUserFriends());
+store.dispatch(loginAsync('username123'));
+store.dispatch(getUserFriends(2));

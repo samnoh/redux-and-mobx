@@ -1,5 +1,4 @@
-export const START_LOADING = 'loading/START_LOADING';
-export const FINISH_LOADING = 'loading/FINISH_LOADING';
+import { START_LOADING, FINISH_LOADING } from 'store/types/loading';
 
 export const startLoading = requestType => ({
     type: START_LOADING,
