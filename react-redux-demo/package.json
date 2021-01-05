@@ -12,7 +12,7 @@
     "author": "Sam Noh <samnoh.dev@gmail.com>",
     "license": "MIT",
     "dependencies": {
-        "axios": "0.19.0",
+        "axios": "0.21.1",
         "react": "16.11.0",
         "react-dom": "16.11.0",
         "react-redux": "7.1.1",
